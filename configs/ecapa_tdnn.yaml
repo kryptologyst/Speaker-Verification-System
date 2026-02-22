@@ -1,0 +1,33 @@
+# ECAPA-TDNN Configuration
+model:
+  type: "ecapa_tdnn"
+  input_dim: 80
+  channels: 512
+  embedding_dim: 192
+  num_speakers: 1000
+  dropout: 0.5
+  sample_rate: 16000
+
+data:
+  sample_rate: 16000
+  duration: 2.0
+  augment: true
+  batch_size: 32
+  num_workers: 4
+
+training:
+  epochs: 100
+  learning_rate: 0.001
+  weight_decay: 1e-4
+  threshold: 0.5
+  scheduler:
+    type: "cosine"
+    warmup_epochs: 10
+
+evaluation:
+  metrics: ["eer", "min_dcf", "auc", "accuracy"]
+  save_plots: true
+
+logging:
+  level: "INFO"
+  log_file: "logs/ecapa_tdnn_training.log"

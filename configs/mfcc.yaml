@@ -1,0 +1,29 @@
+# MFCC Baseline Configuration
+model:
+  type: "mfcc"
+  n_mfcc: 13
+  n_fft: 2048
+  hop_length: 512
+  n_mels: 80
+  sample_rate: 16000
+
+data:
+  sample_rate: 16000
+  duration: 2.0
+  augment: true
+  batch_size: 32
+  num_workers: 4
+
+training:
+  epochs: 100
+  learning_rate: 0.001
+  weight_decay: 1e-4
+  threshold: 0.5
+
+evaluation:
+  metrics: ["eer", "min_dcf", "auc", "accuracy"]
+  save_plots: true
+
+logging:
+  level: "INFO"
+  log_file: "logs/mfcc_training.log"
